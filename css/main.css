@@ -50,9 +50,13 @@ p, li, a{
 }
 .main{
 	/* use two-thirds or PHI to set the width of this column */
+    float: right;
+    width: 66.66%;
 }
 .sidebar{
 	/* use one-third or PHI to set the width of this column */
+    float: left;
+    width: 33.33%;
 }
 .footer{
 	border-top:1px solid #333;
