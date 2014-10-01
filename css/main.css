@@ -107,7 +107,6 @@ p, li, a{
 ****************************/
 #output1{
     width: 80%;
-    display: block;
     margin: 0 auto;
 }
 
@@ -119,10 +118,12 @@ p, li, a{
 #output1 > #author{
     float: left;
     font-style: italic;
+    font-size: 1rem;
 }
 
 #output1 > #date{
     float: right;
+    font-size: 1rem;
 }
 
 #output1 > #description{
@@ -131,5 +132,5 @@ p, li, a{
 
 #output1 > a{
     color: blue;
-    widows: 80%;
+    font-size: 1rem;
 }
