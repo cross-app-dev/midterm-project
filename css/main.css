@@ -105,6 +105,31 @@ p, li, a{
 /****************************
 	Data Output Styles
 ****************************/
+#output1{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
 
+#output1 img {
+    /* Make sure that every image is fit within width of main section. */
+    width: 100%;
+}
 
+#output1 > #author{
+    float: left;
+    font-style: italic;
+}
 
+#output1 > #date{
+    float: right;
+}
+
+#output1 > #description{
+    clear: both;
+}
+
+#output1 > a{
+    color: blue;
+    widows: 80%;
+}

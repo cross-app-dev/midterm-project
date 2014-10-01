@@ -58,17 +58,20 @@ function createChildrenNodes (){
     /* Create all required nodes that will be added to main section.*/
     var currentJsonEntry = data.items[currentItem];
 
-    var titleNode = document.createElement("p");
+    var titleNode = document.createElement("h1");
     titleNode.appendChild(document.createTextNode(currentJsonEntry.title));
 
     var dateNode  = document.createElement("p");
     dateNode.appendChild(document.createTextNode(currentJsonEntry.date));
+    dateNode.id = "date";
 
     var authorNode = document.createElement("p");
     authorNode.appendChild(document.createTextNode(currentJsonEntry.author));
+    authorNode.id = "author";
 
     var descriptionNode = document.createElement("p");
     descriptionNode.appendChild(document.createTextNode(currentJsonEntry.description));
+    descriptionNode.id = "description";
 
     var imgNode = document.createElement("img");
     /* Set source and alternative properties for each given image. */
@@ -79,14 +82,15 @@ function createChildrenNodes (){
     anchorNode.appendChild(document.createTextNode(currentJsonEntry.link));
     /* Set hyperlink value for the corresponding link. */
     anchorNode.href = currentJsonEntry.link;
+    anchorNode.id = "reference-link";
 
     /* Collect the elements in one object to add them properly to main div. */
     return {
         "title":titleNode ,
-        "date":dateNode ,
-        "author":authorNode ,
-        "description":descriptionNode ,
         "img":imgNode,
+        "author":authorNode ,
+        "date":dateNode ,
+        "description":descriptionNode ,
         "link":anchorNode
     };
 }
