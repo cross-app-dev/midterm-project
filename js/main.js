@@ -6,7 +6,7 @@ var currentItem = 0;
 var loadBtn;
 var mainOutDiv;
 var sidebarOutDiv;
-
+var htmlOutNode = {};
 window.onload = init;
 
 function init( ){
@@ -24,7 +24,6 @@ function init( ){
 function fetchData( ){
 	//when the user clicks the load button we would normally do an AJAX call to fetch the data
 	//our data is already in the other file - data.js
-//    console.log("Data inside json file is:", data);
 	moveExistingDataToSide( );
 	displayNewDataInMain( );
 }
@@ -34,8 +33,10 @@ function displayNewDataInMain( ){
 	//clear the data from the main output div by
     mainOutDiv.innerHTML = "";
 
+    htmlOutNode = createChildrenNodes();
+
 	//replacing it with the next object from the JSON in data.js
-    replaceJsonObject(createChildrenNodes());
+    addJsonObject(mainOutDiv, htmlOutNode);
 
 	//Use the currentItem variable to keep track of which item you are showing
 	//Increment the currentItem variable after you display the data in the output div
@@ -45,7 +46,9 @@ function displayNewDataInMain( ){
 function moveExistingDataToSide( ){
 	//take the data in the main section output div	and add it to the sidebar output div
 
-
+    if(htmlOutNode){
+        addJsonObject(sidebarOutDiv , htmlOutNode);
+    }
 }
 
 function getNextItemIndex (){
@@ -63,26 +66,27 @@ function createChildrenNodes (){
 
     var dateNode  = document.createElement("p");
     dateNode.appendChild(document.createTextNode(currentJsonEntry.date));
-    dateNode.id = "date";
+    dateNode.className = "output-date";
 
     var authorNode = document.createElement("p");
     authorNode.appendChild(document.createTextNode(currentJsonEntry.author));
-    authorNode.id = "author";
+    authorNode.className = "output-author";
 
     var descriptionNode = document.createElement("p");
     descriptionNode.appendChild(document.createTextNode(currentJsonEntry.description));
-    descriptionNode.id = "description";
+    descriptionNode.className = "output-description";
 
     var imgNode = document.createElement("img");
     /* Set source and alternative properties for each given image. */
     imgNode.src = "./img/" + currentJsonEntry.image;
     imgNode.alt = "image of "+ currentJsonEntry.author;
+    imgNode.className = "output-img";
 
     var anchorNode = document.createElement("a");
     anchorNode.appendChild(document.createTextNode(currentJsonEntry.link));
     /* Set hyperlink value for the corresponding link. */
     anchorNode.href = currentJsonEntry.link;
-    anchorNode.id = "reference-link";
+    anchorNode.className = "output-link";
 
     /* Collect the elements in one object to add them properly to main div. */
     return {
@@ -95,8 +99,8 @@ function createChildrenNodes (){
     };
 }
 
-function replaceJsonObject(jsonObject){
+function addJsonObject(parentNode , jsonObject){
     for (prop in jsonObject){
-        mainOutDiv.appendChild(jsonObject[prop]);
+        parentNode.appendChild(jsonObject[prop]);
     }
 }

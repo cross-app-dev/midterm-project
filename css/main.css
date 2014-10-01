@@ -110,27 +110,27 @@ p, li, a{
     margin: 0 auto;
 }
 
-#output1 img {
+.output-img {
     /* Make sure that every image is fit within width of main section. */
     width: 100%;
 }
 
-#output1 > #author{
+.output-author{
     float: left;
     font-style: italic;
     font-size: 1rem;
 }
 
-#output1 > #date{
+.output-date{
     float: right;
     font-size: 1rem;
 }
 
-#output1 > #description{
+.output-description{
     clear: both;
 }
 
-#output1 > a{
+.output-link{
     color: blue;
     font-size: 1rem;
 }
