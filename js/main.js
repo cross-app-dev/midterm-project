@@ -6,7 +6,7 @@ var currentItem = 0;
 var loadBtn;
 var mainOutDiv;
 var sidebarOutDiv;
-var htmlOutNode = {};
+var containerNode;
 window.onload = init;
 
 function init( ){
@@ -33,10 +33,8 @@ function displayNewDataInMain( ){
 	//clear the data from the main output div by
     mainOutDiv.innerHTML = "";
 
-    htmlOutNode = createChildrenNodes();
-
 	//replacing it with the next object from the JSON in data.js
-    addJsonObject(mainOutDiv, htmlOutNode);
+    mainOutDiv.appendChild(createContainerNode());
 
 	//Use the currentItem variable to keep track of which item you are showing
 	//Increment the currentItem variable after you display the data in the output div
@@ -46,8 +44,9 @@ function displayNewDataInMain( ){
 function moveExistingDataToSide( ){
 	//take the data in the main section output div	and add it to the sidebar output div
 
-    if(htmlOutNode){
-        addJsonObject(sidebarOutDiv , htmlOutNode);
+    if(containerNode){
+        sidebarOutDiv.appendChild(containerNode);
+        console.log(sidebarOutDiv.children.length);
     }
 }
 
@@ -103,4 +102,11 @@ function addJsonObject(parentNode , jsonObject){
     for (prop in jsonObject){
         parentNode.appendChild(jsonObject[prop]);
     }
+}
+
+function createContainerNode (){
+    var htmlOutNode = createChildrenNodes();
+    containerNode = document.createElement("div");
+    addJsonObject(containerNode, htmlOutNode);
+    return containerNode;
 }
