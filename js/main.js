@@ -46,7 +46,7 @@ function moveExistingDataToSide( ){
 
     if(containerNode){
         applySidebarStyle();
-        sidebarOutDiv.appendChild(containerNode);
+        sidebarOutDiv.insertBefore(containerNode, sidebarOutDiv.firstChild);
         console.log(sidebarOutDiv.children.length);
     }
 }
