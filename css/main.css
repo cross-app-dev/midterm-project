@@ -112,7 +112,12 @@ p, li, a{
 
 .output-img {
     /* Make sure that every image is fit within width of main section. */
-    width: 100%;
+    width: 80%;
+
+    /* Center image into its parent element. */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .output-author{
@@ -133,4 +138,20 @@ p, li, a{
 .output-link{
     color: blue;
     font-size: 1rem;
+
+    /*anchor is inline element by default, so link wraps in the empty space of output2 whose
+    column width is small. To keep the alignment, change it s display to block. */
+    display: block;
+}
+
+#output2{
+    margin: 0 auto;
+}
+
+.small-heading{
+    font-size: 1.4rem;
+}
+.small-text{
+    font-size: 1em;
+    padding: 1.5em;
 }

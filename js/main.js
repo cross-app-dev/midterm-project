@@ -45,6 +45,11 @@ function moveExistingDataToSide( ){
 	//take the data in the main section output div	and add it to the sidebar output div
 
     if(containerNode){
+        var listOfParagraphs = containerNode.getElementsByTagName("p");
+        for(var i=0; i<listOfParagraphs.length ; i++)
+            applyStyleClass(listOfParagraphs[i], "small-text");
+        applyStyleClass(containerNode.getElementsByClassName("output-link")[0], "small-text");
+        applyStyleClass(containerNode.getElementsByTagName("h2")[0], "small-heading");
         sidebarOutDiv.appendChild(containerNode);
         console.log(sidebarOutDiv.children.length);
     }
@@ -60,7 +65,7 @@ function createChildrenNodes (){
     /* Create all required nodes that will be added to main section.*/
     var currentJsonEntry = data.items[currentItem];
 
-    var titleNode = document.createElement("h1");
+    var titleNode = document.createElement("h2");
     titleNode.appendChild(document.createTextNode(currentJsonEntry.title));
 
     var dateNode  = document.createElement("p");
@@ -109,4 +114,9 @@ function createContainerNode (){
     containerNode = document.createElement("div");
     addJsonObject(containerNode, htmlOutNode);
     return containerNode;
+}
+
+function applyStyleClass(elemNode, targetClassName){
+    elemNode.className += (" "+ targetClassName);
+
 }
