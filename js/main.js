@@ -45,11 +45,7 @@ function moveExistingDataToSide( ){
 	//take the data in the main section output div	and add it to the sidebar output div
 
     if(containerNode){
-        var listOfParagraphs = containerNode.getElementsByTagName("p");
-        for(var i=0; i<listOfParagraphs.length ; i++)
-            applyStyleClass(listOfParagraphs[i], "small-text");
-        applyStyleClass(containerNode.getElementsByClassName("output-link")[0], "small-text");
-        applyStyleClass(containerNode.getElementsByTagName("h2")[0], "small-heading");
+        applySidebarStyle();
         sidebarOutDiv.appendChild(containerNode);
         console.log(sidebarOutDiv.children.length);
     }
@@ -119,4 +115,14 @@ function createContainerNode (){
 function applyStyleClass(elemNode, targetClassName){
     elemNode.className += (" "+ targetClassName);
 
+}
+
+function applySidebarStyle(){
+    var listOfParagraphs = containerNode.getElementsByTagName("p");
+    for(var i=0; i<listOfParagraphs.length ; i++){
+        applyStyleClass(listOfParagraphs[i], "small-text");
+    }
+
+    applyStyleClass(containerNode.getElementsByClassName("output-link")[0], "small-text");
+    applyStyleClass(containerNode.getElementsByTagName("h2")[0], "small-heading");
 }
