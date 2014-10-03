@@ -3,11 +3,21 @@
 	Declarations
 **************************/
 var currentItem = 0;
+
+/* JS object to refer to load button inside the webpage. */
 var loadBtn;
+
+/* JS object to refer to main section inside the webpage.*/
 var mainOutDiv;
+
+/* JS object to refer to sidebar section inside the webpage. */
 var sidebarOutDiv;
+
+/* JS object to refer to container div for every json object. The main target of this container is to
+   facilitate the removal of json object from side bar.*/
 var containerNode;
-var MAX_NUM_OF_ELEMS = 3;
+
+/* Upon loading the webpage, perfrom the required initialization. */
 window.onload = init;
 
 function init( ){
@@ -35,7 +45,8 @@ function displayNewDataInMain( ){
     mainOutDiv.innerHTML = "";
 
 	//replacing it with the next object from the JSON in data.js
-    mainOutDiv.appendChild(createContainerNode());
+    containerNode = createContainerNode();
+    mainOutDiv.appendChild(containerNode);
 
 	//Use the currentItem variable to keep track of which item you are showing
 	//Increment the currentItem variable after you display the data in the output div
@@ -48,6 +59,8 @@ function moveExistingDataToSide( ){
     if(containerNode){
         applySidebarStyle();
 
+        var MAX_NUM_OF_ELEMS = 3;
+
         /* Length of sidebar element nodes would reach 3 as maximum. */
         if(MAX_NUM_OF_ELEMS === sidebarOutDiv.children.length ){
 
@@ -57,7 +70,6 @@ function moveExistingDataToSide( ){
             /*console.log("sidebarOutDiv.children.length = ", sidebarOutDiv.children.length);*/
         }
         sidebarOutDiv.insertBefore(containerNode, sidebarOutDiv.firstChild);
-        console.log(sidebarOutDiv.children.length);
     }
 }
 
@@ -68,7 +80,7 @@ function getNextItemIndex (){
 
 function createChildrenNodes (){
 
-    /* Create all required nodes that will be added to main section.*/
+    /* Create all required nodes that will be added to main/sidebar section.*/
     var currentJsonEntry = data.items[currentItem];
 
     var titleNode = document.createElement("h2");
@@ -109,24 +121,32 @@ function createChildrenNodes (){
     };
 }
 
-function addJsonObject(parentNode , jsonObject){
+/*  This function appends the given jsObject into the parent Node. JS object must hold a valid
+    HTML element for every key/value pairs in the object.
+*/
+function addJsonObject(parentNode , jsObject){
     for (prop in jsonObject){
-        parentNode.appendChild(jsonObject[prop]);
+        parentNode.appendChild(jsObject[prop]);
     }
 }
 
 function createContainerNode (){
     var htmlOutNode = createChildrenNodes();
-    containerNode = document.createElement("div");
-    addJsonObject(containerNode, htmlOutNode);
-    return containerNode;
+    var divNode = document.createElement("div");
+    addJsonObject(divNode, htmlOutNode);
+    return divNode;
 }
 
 function applyStyleClass(elemNode, targetClassName){
+    /* Separate function to add CSS class to any element node. */
     elemNode.className += (" "+ targetClassName);
 
 }
 
+/* This function styles sidebar section by adding corresponding CSS classes to its children elements.
+   I stick to use classes instead of applying this styles in CSS file itself using id selector to reduce
+   required code changes (if any) in the future.
+*/
 function applySidebarStyle(){
     var listOfParagraphs = containerNode.getElementsByTagName("p");
     for(var i=0; i<listOfParagraphs.length ; i++){
