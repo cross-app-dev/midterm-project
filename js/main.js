@@ -7,6 +7,7 @@ var loadBtn;
 var mainOutDiv;
 var sidebarOutDiv;
 var containerNode;
+var MAX_NUM_OF_ELEMS = 3;
 window.onload = init;
 
 function init( ){
@@ -46,6 +47,15 @@ function moveExistingDataToSide( ){
 
     if(containerNode){
         applySidebarStyle();
+
+        /* Length of sidebar element nodes would reach 3 as maximum. */
+        if(MAX_NUM_OF_ELEMS === sidebarOutDiv.children.length ){
+
+            /* lastChild property contains "return character", get previous element node.
+               Thus last DOM element node is obtained and ready to be removed. */
+            sidebarOutDiv.removeChild(sidebarOutDiv.lastChild.previousElementSibling);
+            /*console.log("sidebarOutDiv.children.length = ", sidebarOutDiv.children.length);*/
+        }
         sidebarOutDiv.insertBefore(containerNode, sidebarOutDiv.firstChild);
         console.log(sidebarOutDiv.children.length);
     }
