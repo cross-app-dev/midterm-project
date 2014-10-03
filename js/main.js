@@ -130,6 +130,9 @@ function addJsonObject(parentNode , jsObject){
     }
 }
 
+/* This function creates a div container node to all json objects that are required to be added.
+   It appends all children to the container.
+*/
 function createContainerNode (){
     var htmlOutNode = createChildrenNodes();
     var divNode = document.createElement("div");
@@ -137,8 +140,8 @@ function createContainerNode (){
     return divNode;
 }
 
+/* This function is to add CSS class to any element node. */
 function applyStyleClass(elemNode, targetClassName){
-    /* Separate function to add CSS class to any element node. */
     elemNode.className += (" "+ targetClassName);
 
 }
