@@ -106,18 +106,15 @@ p, li, a{
 	Data Output Styles
 ****************************/
 #output1{
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .output-img {
     /* Make sure that every image is fit within width of main section. */
     width: 80%;
-
-    /* Center image into its parent element. */
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 20px;
 }
 
 .output-author{
@@ -129,6 +126,7 @@ p, li, a{
 .output-date{
     float: right;
     font-size: 1rem;
+    margin-right: 3rem;
 }
 
 .output-description{
@@ -145,6 +143,7 @@ p, li, a{
 }
 
 #output2{
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -153,5 +152,5 @@ p, li, a{
 }
 .small-text{
     font-size: 1em;
-    padding: 1.5em;
+    padding-left: 20px;
 }
