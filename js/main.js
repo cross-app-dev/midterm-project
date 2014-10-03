@@ -125,7 +125,7 @@ function createChildrenNodes (){
     HTML element for every key/value pairs in the object.
 */
 function addJsonObject(parentNode , jsObject){
-    for (prop in jsonObject){
+    for (prop in jsObject){
         parentNode.appendChild(jsObject[prop]);
     }
 }
