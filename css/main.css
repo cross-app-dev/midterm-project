@@ -22,6 +22,8 @@ h1{
 }
 h2{
 	font-size: 2.4rem;
+    /* Since one of the last titles in the json file is too long, text wrapping must be done.*/
+    word-wrap: break-word;
 }
 p, li, a{
 	font-family: "Droid Sans",sans-serif;
